@@ -23,7 +23,7 @@ services:
     image: amer1candocker/mytop-demo-front
     container_name: front
     ports:
-      - '8089:8089'
+      - '8089:8081'
     depends_on:
       - api
 
