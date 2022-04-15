@@ -76,6 +76,7 @@ export default {
     logout() {
       this.SET_ADMIN(false)
       localStorage.removeItem('admin-token')
+      this.$router.push('home')
     }
   }
 }

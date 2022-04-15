@@ -12,19 +12,19 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: DashboardView
+    component: DashboardView,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/register',
     name: 'register',
-    component: RegisterView
+    component: RegisterView,
   },
   {
     path: '/enter',
     name: 'enter',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/EnterView.vue')
   }
 ]
@@ -32,6 +32,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if(localStorage.getItem('admin-token')) {
+      next()
+    } else {
+      next({ name: 'enter' })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

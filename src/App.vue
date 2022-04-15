@@ -9,6 +9,7 @@
 
       <v-app-bar-title>
         <router-link to="/" class="mx-3">Главная</router-link>
+        <router-link to="/dashboard" class="mx-3">Dashboard</router-link>
       </v-app-bar-title>
 
       <div v-if="adminName">Привет, {{ adminName }}</div>
