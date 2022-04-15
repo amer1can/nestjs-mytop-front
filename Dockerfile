@@ -6,4 +6,4 @@ RUN npm install -g serve
 COPY . .
 RUN npm run build
 EXPOSE 8081
-CMD ["serve", "dist", "-l 8082"]
+CMD ["serve", "dist"]
